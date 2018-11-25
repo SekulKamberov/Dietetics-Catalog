@@ -38,7 +38,10 @@
             services.AddRouting(routing => routing.LowercaseUrls = true);
             services.AddAutoMapper();
 
-            services.AddMvc();
+            services.AddMvc(options =>
+            {
+                options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute());
+            });
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
